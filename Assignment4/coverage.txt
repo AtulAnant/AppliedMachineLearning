@@ -1,0 +1,6 @@
+---------- coverage: platform linux, python 3.12.3-final-0 -----------
+Name      Stmts   Miss  Cover   Missing
+---------------------------------------
+test.py      26      0   100%
+---------------------------------------
+TOTAL        26      0   100%

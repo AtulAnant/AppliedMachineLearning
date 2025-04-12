@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# This pre-commit hook will run all of the tests before allowing you to commit to the main branch.
+
+# get current branch
+current_branch=`git branch | grep '*' | sed 's/* //'`
+
+# check if current branch is main
+if [ "$current_branch" = "main" ]; then
+    echo "Checking if tests pass before committing to main branch..."
+    # run tests
+    pytest test.py --cov=test --cov-report=term-missing > coverage.txt
+
+    # check if tests passed
+    if [ $? -eq 0 ]; then
+        echo "All tests passed. Proceeding with commit."
+        # exit with success
+        exit 0
+    
+    # if tests failed
+    else
+        echo "Tests failed. Please fix them before committing."
+        # exit with failure
+        exit 1
+    fi
+fi
+
